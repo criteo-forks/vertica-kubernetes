@@ -5,6 +5,7 @@ on:
     branches:
       - criteo-pre-release
       - criteo-release
+      - criteo-main
 
 jobs:
   docker_publish:
