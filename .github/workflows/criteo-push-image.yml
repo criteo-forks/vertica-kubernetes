@@ -23,8 +23,8 @@ jobs:
       # https://github.com/marketplace/actions/push-to-ghcr
       - name: Build and publish a Docker image for ${{ github.repository }}
         env:
-          OPERATOR_IMG: ghcr.io/criteo-forks/verticadb-operator:${{ env.GITHUB_REF_NAME }}-${{ env.GITHUB_SHA }}
+          OPERATOR_IMG: ghcr.io/criteo-forks/verticadb-operator:${{ github.ref_name }}-${{ github.sha }}
           TARGET_ARCH: linux/amd64
         run: |
           make docker-build-operator
-          make docker-push-operator;
+          make docker-push-operator
