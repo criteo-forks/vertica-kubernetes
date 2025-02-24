@@ -651,13 +651,10 @@ func (v *VerticaDB) IsKnownDepotVolumeType() bool {
 // IsDepotVolumeManaged returns true if vertica.com/disable-depot-volume-management
 // is false or not set
 func (v *VerticaDB) IsDepotVolumeManaged() bool {
-	ndvma, found := v.Annotations[vmeta.NoDepotVolumeManagementAnnotation]
-	if !found || ndvma == vmeta.NoDepotVolumeManagementAnnotationFalse ||
-		ndvma == "" {
-		return true
+	if vmeta.DisableDepotVolumeManagement(v.Annotations) {
+		return false
 	}
-
-	return false
+	return true
 }
 
 // GetFirstPrimarySubcluster returns the first primary subcluster defined in the vdb

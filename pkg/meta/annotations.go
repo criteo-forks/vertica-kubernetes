@@ -536,6 +536,12 @@ func GetSkipDeploymentCheck(annotations map[string]string) bool {
 	return lookupBoolAnnotation(annotations, SkipDeploymentCheckAnnotation, false /* default value */)
 }
 
+// DisableDepotVolumeManagement will return true if we should not manage the depot volume
+// in the operator, allowing different provisioning mechanisms
+func DisableDepotVolumeManagement(annotations map[string]string) bool {
+	return lookupBoolAnnotation(annotations, NoDepotVolumeManagementAnnotation, false)
+}
+
 // GetNMAResource is used to retrieve a specific resource for the NMA
 // sidecar. If any parsing error occurs, the default value is returned.
 func GetNMAResource(annotations map[string]string, resourceName corev1.ResourceName) resource.Quantity {
